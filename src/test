@@ -1,0 +1,13 @@
+Create a To-do list with 2 pages:
+
+1: Home (/)
+	 Add Todo data with Heading, 
+     Description,Target date (Optional : Previous date not allowed) &
+     assign to User(Fetch users data from Users page). 
+     Mark todo item as red color if overdue.
+     Add 2 options: delete and mark as complete.
+	
+2: Users (/users)
+	Add & manage User data with Name,
+     Email(Unique value) 
+     & Date of Birth (Optional : Future date not allowed).

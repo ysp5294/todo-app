@@ -1,25 +1,60 @@
 import logo from './logo.svg';
 import './App.css';
+import ToDoList from './components/ToDoList';
+import ToDoItem from './components/ToDoItem';
+import ToDoForm from './components/ToDoForm';
+import UserJson from './Users.json';
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Link,
+  Redirect
+} from 'react-router-dom'
+import { useState } from 'react';
 
-function App() {
+const App = (props) => {
+  const users = [];
+
+  const handleSubmit = (props) => {
+    console.log(props);
+  }
+
+  const [todos, setTodos] = useState([]);
+
+  const addTodoHandler = todo => {
+    if(todo !== null){
+      setTodos( prevTodos => {
+        return [todo, ...prevTodos];
+      });
+    }
+  }
+
+  console.log(todos);
+
+  let todoItem = todos.map( todo => (
+    todo.heading?
+    <ToDoItem
+      key={todo.id}
+      heading={todo.heading}
+      description={todo.description}
+      date={todo.date}
+      userAssigned={todo.userAssigned}
+     /> :
+     null
+  ));
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h1 style={{color: "blue", display:'flex', justifyContent:'center', alignItems:'center'}}>Todo Handler</h1>
+      {/* <ToDoForm onSubmit={handleSubmit}/> */}
+      <ToDoList onAddTodo={addTodoHandler}/>
+
+      {todoItem}
+      {/* <ToDoList /> */}
     </div>
-  );
+  )
+    
 }
 
 export default App;
